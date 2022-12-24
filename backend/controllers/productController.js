@@ -10,10 +10,29 @@ const cloudinary = require("cloudinary").v2;
 // });
 
 const createProduct = asyncHandler(async (req, res) => {
-  const { name, sku, category, quantity, price, description } = req.body;
+  const {
+    name,
+    sku,
+    category,
+    quantity,
+    packSize,
+    unit,
+    price,
+    discount,
+    description,
+  } = req.body;
 
   // validate the product parameters
-  if (!name || !sku || !category || !quantity || !price || !description) {
+  if (
+    !name ||
+    !sku ||
+    !category ||
+    !quantity ||
+    !price ||
+    !description ||
+    !packSize ||
+    !unit
+  ) {
     res.status(400);
     throw new Error("Please fill in all the fields");
   }
@@ -47,7 +66,10 @@ const createProduct = asyncHandler(async (req, res) => {
     sku,
     category,
     quantity,
+    packSize,
+    unit,
     price,
+    discount,
     description,
     image: fileData,
   });
@@ -96,7 +118,16 @@ const deleteProduct = asyncHandler(async (req, res) => {
 const updateProduct = asyncHandler(async (req, res) => {
   //res.send(`Update Product with id ${req.params.id}`);
 
-  const { name, category, quantity, price, description } = req.body;
+  const {
+    name,
+    category,
+    quantity,
+    packSize,
+    unit,
+    price,
+    discount,
+    description,
+  } = req.body;
   const { id } = req.params;
 
   // Add validation for the product id
@@ -140,7 +171,10 @@ const updateProduct = asyncHandler(async (req, res) => {
       name,
       category,
       quantity,
+      packSize,
+      unit,
       price,
+      discount,
       description,
       image: Object.keys(fileData).length === 0 ? product?.image : fileData,
     },

@@ -28,9 +28,27 @@ const productSchema = mongoose.Schema(
       required: [true, "Please add a quantity"],
       trim: true,
     },
+    packSize: {
+      type: String,
+      required: [true, "Please specify the size of each packet"],
+      trim: true,
+    },
+    unit: {
+      type: String,
+      required: [true, "Please specify the unit"],
+      trim: true,
+    },
     price: {
       type: String,
       required: [true, "Please add price"],
+      trim: true,
+    },
+    discount: {
+      type: String,
+      trim: true,
+    },
+    discountedPrice: {
+      type: String,
       trim: true,
     },
     description: {
@@ -47,6 +65,11 @@ const productSchema = mongoose.Schema(
     timestamps: true,
   },
 );
+
+productSchema.pre("save", async function (next) {
+  this.discountedPrice = Number(this.price) * (1 - Number(this.discount) / 100);
+  next();
+});
 
 const Product = mongoose.model("Product", productSchema);
 module.exports = Product;
