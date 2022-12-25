@@ -27,17 +27,17 @@ const Profile = () => {
     getUserData();
   }, [dispatch]);
   return (
-    <div className="profile --my2">
+    <div className="--my2">
       {isLoading && <SpinnerImg />}
       <>
         {!isLoading && profile === null ? (
           <p>Something went wrong, please reload the page...</p>
         ) : (
-          <Card cardClass={"card --flex-dir-column"}>
-            <span className="profile-photo">
-              <img src={profile?.photo} alt="profilepic" />
-            </span>
-            <span className="profile-data --mx2">
+          <div className={"profile"}>
+            <div className="profile-data">
+              <Link to="/edit-profile">
+                <button className="--btn --btn-primary">Edit Profile</button>
+              </Link>
               <p>
                 <b>Name : </b> {profile?.name}
               </p>
@@ -48,15 +48,22 @@ const Profile = () => {
                 <b>Phone : </b> {profile?.phone}
               </p>
               <p>
+                <b>Whatsapp : </b> {profile?.whatsapp}
+              </p>
+              <p>
+                <b>Address : </b> {profile?.address}
+              </p>
+              <p>
+                <b>City : </b> {profile?.city}
+              </p>
+              <p>
                 <b>Bio : </b> {profile?.bio}
               </p>
-              <div>
-                <Link to="/edit-profile">
-                  <button className="--btn --btn-primary">Edit Profile</button>
-                </Link>
-              </div>
-            </span>
-          </Card>
+            </div>
+            <div className={"profile-photo"}>
+              <img src={profile?.photo} alt="profilepic" />
+            </div>
+          </div>
         )}
       </>
     </div>

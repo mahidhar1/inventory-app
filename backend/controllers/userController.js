@@ -40,13 +40,17 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    const { _id, name, email, photo, phone, bio } = user;
+    const { _id, name, email, photo, phone, whatsapp, address, city, bio } =
+      user;
     res.status(201).json({
       _id,
       name,
       email,
       photo,
       phone,
+      whatsapp,
+      address,
+      city,
       bio,
       token,
     });
@@ -86,13 +90,17 @@ const loginUser = asyncHandler(async (req, res) => {
       secure: true,
     });
 
-    const { _id, name, email, photo, phone, bio } = user;
+    const { _id, name, email, photo, phone, whatsapp, address, city, bio } =
+      user;
     res.status(200).json({
       _id,
       name,
       email,
       photo,
       phone,
+      whatsapp,
+      address,
+      city,
       bio,
       token,
     });
@@ -116,7 +124,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 const getUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
-  const { _id, name, email, photo, phone, bio } = user;
+  const { _id, name, email, photo, phone, whatsapp, address, city, bio } = user;
   console.log(req);
   if (user) {
     res.status(200).json({
@@ -125,6 +133,9 @@ const getUser = asyncHandler(async (req, res) => {
       email,
       photo,
       phone,
+      whatsapp,
+      address,
+      city,
       bio,
     });
   } else {
@@ -149,11 +160,15 @@ const loginStatus = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   if (user) {
-    const { _id, name, email, photo, phone, bio } = user;
+    const { _id, name, email, photo, phone, whatsapp, address, city, bio } =
+      user;
     user.name = req.body.name || name;
     user.email = email;
     user.photo = req.body.photo || photo;
     user.phone = req.body.phone || phone;
+    user.whatsapp = req.body.whatsapp || whatsapp;
+    user.address = req.body.address || address;
+    user.city = req.body.city || city;
     user.bio = req.body.bio || bio;
 
     const updatedUser = await user.save();
@@ -163,6 +178,9 @@ const updateUser = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       photo: updatedUser.photo,
       phone: updatedUser.phone,
+      whatsapp: updatedUser.whatsapp,
+      address: updatedUser.address,
+      city: updatedUser.city,
       bio: updatedUser.bio,
     });
   } else {
@@ -200,6 +218,20 @@ const forgotPassword = asyncHandler(async (req, res) => {
   res.send("forgot password");
 });
 
+const getShops = asyncHandler(async (req, res) => {
+  let { city } = req.query;
+  var regex = new RegExp(["^", city, "$"].join(""), "i");
+  const shopsList = await User.find({ city: regex }).sort("-createdAt");
+  if (shopsList) {
+    res.status(200).json({
+      shopsList,
+    });
+  } else {
+    res.status(400);
+    throw new Error("No shops found");
+  }
+});
+
 module.exports = {
   registerUser,
   loginUser,
@@ -209,4 +241,5 @@ module.exports = {
   updateUser,
   changePassword,
   forgotPassword,
+  getShops,
 };

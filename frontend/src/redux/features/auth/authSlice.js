@@ -8,6 +8,9 @@ const initialState = {
     name: "",
     email: "",
     phone: "",
+    whatsapp: "",
+    address: "",
+    city: "",
     bio: "",
     photo: "",
   },
@@ -30,6 +33,9 @@ const authSlice = createSlice({
       state.user.name = profile.name;
       state.user.email = profile.email;
       state.user.phone = profile.phone;
+      state.user.whatsapp = profile.whatsapp;
+      state.user.address = profile.address;
+      state.user.city = profile.city;
       state.user.bio = profile.bio;
       state.user.photo = profile.photo;
     },

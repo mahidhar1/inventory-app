@@ -127,7 +127,7 @@ export const getUser = async () => {
 export const updateUser = async (formData) => {
   try {
     const response = await axios.patch(
-      `${BACKEND_URL}/api/users/updateuser`,
+      `${BACKEND_URL}/api/users/updateUser`,
       formData,
     );
     return response.data;

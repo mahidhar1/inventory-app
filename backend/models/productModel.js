@@ -57,8 +57,9 @@ const productSchema = mongoose.Schema(
       trim: true,
     },
     image: {
-      type: Object,
-      default: {},
+      type: String,
+      default:
+        "https://cdn.shopify.com/s/files/1/0483/7484/1507/products/KodoMillet2_1080x.jpg?v=1667813393",
     },
   },
   {

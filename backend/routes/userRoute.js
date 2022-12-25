@@ -8,6 +8,7 @@ const {
   updateUser,
   changePassword,
   forgotPassword,
+  getShops,
 } = require("../controllers/userController");
 const protect = require("../middlewares/authMiddleware");
 const router = express.Router();
@@ -20,5 +21,6 @@ router.get("/loggedin", loginStatus);
 router.patch("/updateuser", protect, updateUser);
 router.patch("/changepassword", protect, changePassword);
 router.post("/forgotpassword", forgotPassword);
+router.get("/getShops", getShops);
 
 module.exports = router;

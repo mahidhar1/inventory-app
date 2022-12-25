@@ -37,11 +37,12 @@ const Home = () => {
       {/* Hero section */}
       <section className="container hero">
         <div className="hero-text">
-          <h2>Inventory & Stock management solution</h2>
+          <h2>Inventory & Stock management solution for Millets</h2>
           <p>
-            Inventory system to control and manage products in the warehouse in
-            real time. Integration of this solution will help increase
-            productivity and in turn scale the business.
+            Inventory management is crucial for proper shelf-life, control and
+            management of millet based products. Use our product to get indepth
+            analysis and grow your business by easy-to-use platform to monitor
+            the shelf life of millet based products.
           </p>
           <div className="hero-buttons">
             <button className="--btn --btn-secondary">

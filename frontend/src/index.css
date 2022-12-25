@@ -373,6 +373,7 @@ p {
 }
 
 .--form-control input {
+  width: 100%;
   font-size: 1.6rem;
   font-weight: 300;
   padding: 8px 1rem;
@@ -382,6 +383,7 @@ p {
   display: block;
 }
 .--form-control textarea {
+  width: 100%;
   font-size: 1.6rem;
   font-weight: 300;
   padding: 8px 1rem;

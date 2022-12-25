@@ -31,6 +31,18 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "+234",
     },
+    whatsapp: {
+      type: String,
+      default: "+234",
+    },
+    address: {
+      type: String,
+      default: "Random street",
+    },
+    city: {
+      type: String,
+      default: "city",
+    },
     bio: {
       type: String,
       maxLength: [250, "Bio must not be more than 250 characters"],
