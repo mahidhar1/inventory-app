@@ -24,7 +24,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://partner-with-us-millet-sourcing.onrender.com",
+      "https://partner-with-us-millet-sourcing.vercel.app",
     ],
     credentials: true,
   }),
